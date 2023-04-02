@@ -20,6 +20,7 @@
 3. [递归](blue/blue-note/3.md)
 4. [查找和排序](blue/blue-note/4.md)
 5. [递归DFS](blue/blue-note/5.md)
+6. [多维数组与矩阵](blue/blue-note/6.md)
 3. [集合](blue/blue-note/集合.md)
 
 </div>
