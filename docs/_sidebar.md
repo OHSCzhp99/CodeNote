@@ -9,7 +9,7 @@
 
 - [C (未更新)]()
 - [Java](java/java.md)
-- [python (未更新)]()
+- [python](python/python.md)
 - [Android (未更新)]()
 - [微信小程序开发](wx/wx.md)
 
@@ -35,7 +35,7 @@
 
 - [数据结构 (未更新)]()
 - [计算机组成原理](组成原理/组成原理.md)
-- [计算机操作系统](blue/blue.md)
+- [计算机操作系统](操作系统/操作系统.md)
 
 
 </div>
