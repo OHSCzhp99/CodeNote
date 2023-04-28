@@ -5,11 +5,12 @@
 - [Html - Css](htmlCssJs/html)
 - [JavaScript](htmlCssJs/js)
 
-<p style="font-size:18px; margin-bottom:0px;"><b>开发</b></p>
+<p style="font-size:18px; margin-bottom:0px;"><b>编程</b></p>
 
 - [C (未更新)]()
 - [Java](java/java.md)
 - [python](python/python.md)
+- [Linux](Linux/Linux.md)
 - [Android (未更新)]()
 - [微信小程序开发](wx/wx.md)
 
@@ -27,7 +28,7 @@
 
 <p style="font-size:18px; margin-bottom:0px;"><b>其他</b></p>
 
-- [蓝桥杯 (算法)](blue/blue.md)
+- [蓝桥杯 (Java)](blue/blue.md)
 
 
 
