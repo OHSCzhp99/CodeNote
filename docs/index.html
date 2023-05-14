@@ -7,23 +7,69 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+
+  
+
 </head>
 <body>
 
   <div id="app"></div>
   <script>
     window.$docsify = {
-      name: 'Code Node',
+      name: '<b style="background-image: linear-gradient(to top, #a7a6cb 0%, #8989ba 52%, #8989ba 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Code Node</b>',
       repo: '',
       coverpage:true,   //封面
       loadSidebar:true, //侧边栏
       // subMaxLevel:6,    //侧边栏的标题分级数
       loadNavbar:true,  //导航栏
+      search: 'auto', // 搜索框 default
+
+      //---------------以下是插件---------------
+      //1.最后更新时间插件 - 页面底部显示更新时间
+      timeUpdater:{
+        text:"<diy align='right' width='100%' style='color:gray;font-size:16px;margin-top:10px;'>最后更新时间: {docsify-updated}</div>",
+        formatUpdated: "{YYYY}-{MM}-{DD} {HH}:{mm}",
+      },
+      //2.进度条美化插件 - 网页最上方有进度条随着页面的上下拖动而进退
+      progress:{
+        position:"top",
+        color:"var(--theme-color,#42b983)",
+        height:"3px"
+      },
+      //3.回到顶部 - 页面右下角会有回到顶部
+      docsifyBackTop:{
+        size: 32,
+        bottom: 15,
+        right: 15,
+        logo:'top',
+        bgColor: '#42b983'
+      },
+      //4.显示页面右侧目录
+      toc:{
+        tocMaxLevel: 5,
+        target: 'h1, h2, h3, h4, h5, h6',
+        ignoreHeaders: ['<!-- {docsify-ignore} -->','<!-- {docsify-ignore-all} -->']
+      },
+
     }
   </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify"></script>
+  <!-- java代码块 -->
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>
+  <!-- python代码块 -->
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+  <!-- 搜素 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <!-- 最近更新记录 -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-updated/src/time-updater.min.js"></script>
+  <!-- 进度条美化 -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-progress@latest/dist/progress.min.js"></script>
+  <!-- 回到顶部 -->
+  <script src="https://cdn.jsdelivr.net/gh/Sumsung524/docsify-backTop/dist/docsify-backTop.min.js"></script>
+  <!-- 显示页面右侧目录 -->
+  <link rel="stylesheet" href="https://unpkg.com/docsify-plugin-toc@1.3.1/dist/light.css">
+  <script src="https://cdn.jsdelivr.net/npm/docsify-plugin-toc@1.1.0/dist/docsify-plugin-toc.min.js"></script>
+
 </body>
 </html>
