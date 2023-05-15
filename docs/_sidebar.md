@@ -22,6 +22,7 @@
 
 <p style="font-size:18px; margin-bottom:0px;"><b>框架</b></p>
 
+- [- Node.js](node/node.md)
 - [- Vue (未更新)]()
 - [- uni-app (未更新)]()
 - [- JavaWeb (未更新)]()
@@ -29,8 +30,7 @@
 
 <p style="font-size:18px; margin-bottom:0px;"><b>数据库</b></p>
 
-- [- Sql Serve (未更新)]()
-- [- MySql (未更新)]()
+- [- 增删改查](sql/sql.md)
 
 <p style="font-size:18px; margin-bottom:0px;"><b>其他</b></p>
 
