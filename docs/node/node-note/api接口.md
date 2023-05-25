@@ -1,0 +1,226 @@
+## 使用 Node.js 搭建接口
+---
+### 1. 准备工作
+1.安装Nodejs<br>
+2.安装Mysql（Navicat for MySQL 软件）<br>
+3.准备Mysql数据库数据（使用Navicat 自己创建数据库、数据表）<br>
+---
+### 2. 使用Nodejs命令安装第三方包 express、mysql 框架
+Express是基于Node.js 平台，快速、开放、极简的Web开发框架，<br>
+我们就可以方便、快速的创建Web 网站的服务器或API接口的服务器
+
+mysql是一款专为node.js生成sql语句的插件，链式调用，使用灵活，<br>
+支持生成sl语法，也支持生成语法之后直接调用，支持事物等特性
+
+<span style="color: rgb(96, 188, 228);">思考：既生瑜何生亮（有了http内置模块，为什么还有用Express）?<span><br>
+<span style="color: rgb(239, 111, 111);">答案：http 内置模块用起来很复杂，开发效率低;Express是基于内置的http模块进一步封装出来的，能够快速创建web服务器</span>
+
+<span style="color: rgb(96, 188, 228);">思考：http内置模块与Express是什么关系?<span><br>
+<span style="color: rgb(239, 111, 111);">答案：类似于浏览器中 Web API和iQuery的关系。后者是基于前者进一步封装出来的。
+</span>
+
+```javascript
+可使用下面两行命令安装：
+
+npm i express -S
+npm i mysql -S
+```
+---
+
+### 3. 先了解并解决跨域问题
+跨域问题指的是不同站点之间，使用 ajax 无法相互调用的问题<br>
+跨域问题本质是浏览器的一种保护机制，它的初衷是为了保证用户的安全，防止恶意网站窃取数据
+
+在请求时，如果出现了以下情况中的任意一种，那么它就是跨域请求：<br>
+协议不同，如 http 和 https<br>
+域名不同<br>
+端口不同<br>
+
+<span style="color: rgb(239, 111, 111);">三种方法解决跨域:</span>
+
+```javascript
+1.使用第三方库cors
+npm i cors -s   //安装cors
+const cors = require('cors') //导入cors包
+app.use(cors()) //调用cors
+-------------------------------------
+2.直接在路由器输入
+res.setHeader("Access-Control-Allow-Origin", "*");
+-------------------------------------
+3.用app.all解决
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.header("X-Powered-By",' 3.2.1');
+    res.header("Content-Type", "application/json;charset=utf-8");
+    next();
+});
+```
+---
+
+### 4. node 中 mysql 增删改查语句
+```js
+//--------------------------------查询--------------------------
+// 查询 users 表中所有的数据
+const sqlStr = 'select * from users'
+db.query(sqlStr, (err, results) => {
+  // 查询数据失败
+  if (err) return console.log(err.message)
+  // 查询数据成功
+  // 注意：如果执行的是 select 查询语句，则执行的结果是数组
+  console.log(results)
+}) 
+
+//--------------------------------添加--------------------------
+// 向 users 表中，新增一条数据，其中 username 的值为 Spider-Man，password 的值为 pcc123
+const user = { username: 'Spider-Man', password: 'pcc123' }
+// 定义待执行的 SQL 语句，添加操作 ? 可作为占位符
+const sqlStr = 'insert into users (username, password) values (?, ?)'
+// 执行 SQL 语句
+db.query(sqlStr, [user.username, user.password], (err, results) => {
+  // 执行 SQL 语句失败了
+  if (err) return console.log(err.message)
+  // 注意：如果执行的是 insert into 插入语句，则 results 是一个对象
+  // 可以通过 affectedRows 属性，影响记录是不是1，来判断是否插入数据成功
+  if (results.affectedRows === 1) {
+    console.log('插入数据成功!')
+  }
+}) 
+
+// 演示插入数据的便捷方式
+const user = { username: 'Spider-Man2', password: 'pcc4321' }
+// 定义待执行的 SQL 语句
+const sqlStr = 'insert into users set ?'
+// 执行 SQL 语句
+db.query(sqlStr, user, (err, results) => {
+  if (err) return console.log(err.message)
+  if (results.affectedRows === 1) {
+    console.log('插入数据成功')
+  }
+}) 
+
+//--------------------------------更新--------------------------
+// 演示如何更新用户的信息
+const user = { id: 6, username: 'aaa', password: '000' }
+// 定义 SQL 语句
+const sqlStr = 'update users set username=?, password=? where id=?'
+// 执行 SQL 语句
+db.query(sqlStr, [user.username, user.password, user.id], (err, results) => {
+  if (err) return console.log(err.message)
+  // 注意：执行了 update 语句之后，执行的结果，也是一个对象，可以通过 affectedRows 判断是否更新成功
+  if (results.affectedRows === 1) {
+    console.log('更新成功')
+  }
+}) 
+
+// 演示更新数据的便捷方式
+const user = { id: 6, username: 'aaaa', password: '0000' }
+// 定义 SQL 语句
+const sqlStr = 'update users set ? where id=?'
+// 执行 SQL 语句
+db.query(sqlStr, [user, user.id], (err, results) => {
+  if (err) return console.log(err.message)
+  if (results.affectedRows === 1) {
+    console.log('更新数据成功')
+  }
+}) 
+
+//--------------------------------删除--------------------------
+// 删除 id 为 5 的用户
+const sqlStr = 'delete from users where id=?'
+//如果占位符 ? 只要一个，则可以省略数组，直接写
+db.query(sqlStr, 5, (err, results) => {
+  if (err) return console.log(err.message)
+  // 注意：执行 delete 语句之后，结果也是一个对象，也会包含 affectedRows 属性
+  if (results.affectedRows === 1) {
+    console.log('删除数据成功')
+  }
+}) 
+
+// 标记删除
+//为记录添加status，0为存在，1为删除
+const sqlStr = 'update users set status=? where id=?'
+db.query(sqlStr, [1, 6], (err, results) => {
+  if (err) return console.log(err.message)
+  if (results.affectedRows === 1) {
+    console.log('标记删除成功')
+  }
+})
+```
+
+
+---
+
+### 5. 正式搭建接口步骤
+1.创建文件夹，执行node命令<br>
+`npm init`
+
+2.安装好 express、mysql 框架<br>
+`npm i express -S`<br>
+`npm i mysql -S`<br>
+`npm i cors -S` (安装cors包解决跨域问题)<br>
+`npm i nodemon -g`（监控文件修改）
+
+3.创建API路由文件，即文件后缀为.js，用来编写定义API路由的代码（例如 我创建api.js 文件）<br>
+```javascript
+//导入express、mysql包、cors包
+const express = require('express');
+const mysql = require('mysql');
+const cors = require('cors') 
+
+//调用 cors 解决跨域问题
+app.use(cors()) 
+
+//用变量app代替pxress()方法，方便书写
+const app = express();
+
+//链接数据库
+const db = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: '123456',  // 改成你自己的密码
+    database: 'test'     // 改成你的数据库名称
+});
+
+//编写API接口
+//把 /infoswiper 改成你自己定的地址，就是连接访问的那个地址
+//（我这里吧接口名字改为跟我的表名一样，方便使用）
+app.get('/infoswiper',function(err,res){
+    const sql = 'select * from infoswiper'; // 写你需要的sql代码（增删改查）
+    connection.query(sql,function(err,result){
+        if(err){
+            console.log('[SELECT ERROR] - ', err.message);
+            return;
+        }
+        // result内放的就是返回的数据，res是api传数据
+        res.json(result); // 返回的数据需要转换成JSON格式
+    }); 
+})    
+
+//启动服务器
+app.listen(8081, () => {
+    //这里端口为8081，如有冲突自行改端口号
+    console.log('Server running at http://127.0.0.1:8081');
+});
+```
+4.启动服务器：
+在项目文件夹中，运行这个命令来启动服务器<br>
+`nodemon api.js`
+
+5.访问api接口：<br>
+127.0.0.1:8081/infoswiper<br>
+---
+### 6.数据库使用步骤
+创建表后，可编写字段，字段就是每个属性，创建字段后可编写值
+
+图片视频的存放：<br>
+值可填写为路径，在该项目创建image文件夹，专门放本地图片，<br>
+而路径的编写就得看是哪个页面要调用，从而确定路径
+
+<div style="background-color: rgb(206, 225, 225); padding:20px;">
+<div>
+<img style="width:400px;" src="node/img/数据库.jpg" alt="">
+<img style="width:400px;" src="node/img/表.jpg" alt="">
+</div>
+</div>
