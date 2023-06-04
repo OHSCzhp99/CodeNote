@@ -2,6 +2,7 @@
 
 <p class="box-Computer" style=""><b>Computer 科学前沿</b></p>
 
+- [- 学一招](计算机科学前沿/学一招/学一招.md)
 - [- 网页收集者](计算机科学前沿/收集者/收集者.md)
 - [- ChatGPT](计算机科学前沿/ChatGPT/ChatGPT.md)
 
