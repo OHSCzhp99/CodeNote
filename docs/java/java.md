@@ -1,4 +1,6 @@
 # Java 快速回忆
+课程指引： https://www.bilibili.com/video/BV17F411T7Ao/?spm_id_from=333.999.0.0&vd_source=8269cd18917664c0b3a3061a355cf47c （黑马程序员）
+
 ---
 ## 章节导航：
 <div style="font-size:20px;">

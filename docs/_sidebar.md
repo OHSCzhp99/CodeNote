@@ -13,7 +13,7 @@
 
 <p style="font-size:18px; margin-bottom:0px;"><b>编程</b></p>
 
-- [- C (未更新)]()
+- [- C++](cpp/cpp.md)
 - [- Java](java/java.md)
 - [- python](python/python.md)
 - [- Linux](Linux/Linux.md)
@@ -36,8 +36,7 @@
 <p style="font-size:18px; margin-bottom:0px;"><b>其他</b></p>
 
 - [- 蓝桥杯 (Java)](blue/blue.md)
-
-
+- [- 英语语法](english/english.md)
 
 <p style="font-size:18px; margin-bottom:0px;"><b>课程</b></p>
 
