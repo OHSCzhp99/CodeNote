@@ -36,7 +36,7 @@
 <p style="font-size:18px; margin-bottom:0px;"><b>其他</b></p>
 
 - [- 蓝桥杯 (Java)](blue/blue.md)
-- [- 英语语法](english/english.md)
+- [- 软考 (软件设计师)](软考/软考.md)
 
 <p style="font-size:18px; margin-bottom:0px;"><b>课程</b></p>
 
