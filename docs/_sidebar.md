@@ -17,7 +17,6 @@
 - [- Java](java/java.md)
 - [- python](python/python.md)
 - [- Linux](Linux/Linux.md)
-- [- Android (未更新)]()
 - [- 微信小程序开发](wx/wx.md)
 
 
@@ -25,9 +24,8 @@
 
 - [- Node.js](node/node.md)
 - [- Vue (未更新)]()
-- [- uni-app (未更新)]()
-- [- JavaWeb (未更新)]()
-- [- .Net (未更新)]()
+- [- SpringBoot (未更新)]()
+
 
 <p style="font-size:18px; margin-bottom:0px;"><b>数据库</b></p>
 
@@ -36,7 +34,7 @@
 <p style="font-size:18px; margin-bottom:0px;"><b>其他</b></p>
 
 - [- 蓝桥杯 (Java)](blue/blue.md)
-- [- 软考 (软件设计师)](软考/软考.md)
+- [- 软考中级 (软件设计师)](软考/软考.md)
 
 <p style="font-size:18px; margin-bottom:0px;"><b>课程</b></p>
 
